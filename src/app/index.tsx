@@ -1,7 +1,9 @@
+import { LoginPage } from "@/pages/login-page/ui";
+
 export function App() {
   return (
     <>
-      <section id="center"></section>
+      <LoginPage />
     </>
   );
 }
