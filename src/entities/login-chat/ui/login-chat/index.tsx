@@ -5,8 +5,11 @@ export const LoginChat = () => {
     <>
       <div className={styles.loginChat}>LoginChat</div>
       <div>
-        <input type="text" placeholder="아이디" />
-        <input type="password" placeholder="비밀번호" />
+        <div className={styles.loginChatInput}>
+          <input type="text" placeholder="아이디" />
+          <input type="password" placeholder="비밀번호" />
+        </div>
+        <button className={styles.loginChatButton}>로그인</button>
       </div>
     </>
   );
