@@ -1,16 +1,7 @@
 import * as styles from "./style.css";
 
-interface LoginInputProps {
-  type: string;
-  placeholder: string;
-}
+interface LoginInputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-export const LoginInput = ({ type, placeholder }: LoginInputProps) => {
-  return (
-    <input
-      className={styles.loginInput}
-      type={type}
-      placeholder={placeholder}
-    />
-  );
+export const LoginInput = (props: LoginInputProps) => {
+  return <input className={styles.loginInput} {...props} />;
 };

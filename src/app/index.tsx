@@ -30,6 +30,7 @@ export function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/login-page" element={<LoginPage />} />
         <Route path="/sign-up-page" element={<SignUpPage />} />
+        <Route path="/calculate-page" element={<SignUpPage />} />
       </Routes>
     </BrowserRouter>
   );
