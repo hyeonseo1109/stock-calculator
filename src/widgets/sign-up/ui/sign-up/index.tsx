@@ -1,13 +1,13 @@
-import { LoginButton, LoginInput } from "@/entities/login-chat/ui";
 import * as styles from "./style.css";
+import { LoginButton, LoginInput } from "@/entities/login-chat/ui";
 
-export const Login = () => {
+export const SignUp = () => {
   return (
     <div className={styles.loginBox}>
       <div className={styles.allLogin}>
         <div className={styles.loginTitle}>
           <h2 className={styles.title}>Hello!</h2>
-          <p className={styles.miniTitle}>Sign in to your account</p>
+          <p className={styles.miniTitle}>Create Account</p>
         </div>
 
         <form action="">
@@ -18,9 +18,9 @@ export const Login = () => {
             </div>
             <LoginButton />
             <p className={styles.signUpText}>
-              Don't have an account?{" "}
-              <a className={styles.signUpLink} href="sign-up">
-                Sign up
+              Already have an account?{" "}
+              <a className={styles.signUpLink} href="sign-in">
+                Sign in
               </a>
             </p>
           </div>
