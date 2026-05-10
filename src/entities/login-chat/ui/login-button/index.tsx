@@ -1,5 +1,5 @@
 import * as styles from "./style.css";
 
-export const LoginButton = () => {
-  return <button className={styles.loginChatButton}>SIGN IN</button>;
+export const LoginButton = ({ text }: { text: string }) => {
+  return <button className={styles.loginChatButton}>{text}</button>;
 };

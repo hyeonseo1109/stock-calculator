@@ -3,24 +3,24 @@ import { LoginButton, LoginInput } from "@/entities/login-chat/ui";
 
 export const SignUp = () => {
   return (
-    <div className={styles.loginBox}>
-      <div className={styles.allLogin}>
-        <div className={styles.loginTitle}>
-          <h2 className={styles.title}>Hello!</h2>
-          <p className={styles.miniTitle}>Create Account</p>
+    <div className={styles.signUpBox}>
+      <div className={styles.allSignUp}>
+        <div className={styles.signUpTitle}>
+          <h2 className={styles.title}>Welcome!</h2>
+          <p className={styles.miniTitle}>Create your account to get started</p>
         </div>
 
         <form action="">
-          <div className={styles.loginChatButtonWrapper}>
-            <div className={styles.loginChatWrapper}>
+          <div className={styles.signUpChatButtonWrapper}>
+            <div className={styles.signUpChatWrapper}>
               <LoginInput type="text" placeholder="아이디" />
               <LoginInput type="password" placeholder="비밀번호" />
             </div>
-            <LoginButton />
+            <LoginButton text="SIGN UP" />
             <p className={styles.signUpText}>
               Already have an account?{" "}
               <a className={styles.signUpLink} href="sign-in">
-                Sign in
+                Sign up
               </a>
             </p>
           </div>

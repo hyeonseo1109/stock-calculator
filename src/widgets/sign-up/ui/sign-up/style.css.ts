@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
-export const loginTitle = style({
+export const signUpTitle = style({
   display: "flex",
   color: "black",
   flexDirection: "column",
@@ -19,7 +19,7 @@ export const miniTitle = style({
 });
 
 // 로그인 input 두 개를 감싸는 wrapper
-export const loginChatWrapper = style({
+export const signUpChatWrapper = style({
   display: "flex",
   flexDirection: "column",
   width: "20rem",
@@ -28,7 +28,7 @@ export const loginChatWrapper = style({
 });
 
 // 로그인 버튼과 로그인 input 두 개를 감싸는 wrapper
-export const loginChatButtonWrapper = style({
+export const signUpChatButtonWrapper = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -38,7 +38,7 @@ export const loginChatButtonWrapper = style({
 });
 
 //전체 엔티티
-export const allLogin = style({
+export const allSignUp = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -66,7 +66,7 @@ export const allLogin = style({
   padding: "10rem 0",
 });
 
-export const loginBox = style({
+export const signUpBox = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",

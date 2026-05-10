@@ -16,7 +16,7 @@ export const Login = () => {
               <LoginInput type="text" placeholder="아이디" />
               <LoginInput type="password" placeholder="비밀번호" />
             </div>
-            <LoginButton />
+            <LoginButton text="SIGN IN" />
             <p className={styles.signUpText}>
               Don't have an account?{" "}
               <a className={styles.signUpLink} href="/sign-up-page">
