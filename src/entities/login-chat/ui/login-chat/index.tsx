@@ -2,8 +2,12 @@ import * as styles from "./style.css";
 
 export const LoginChat = () => {
   return (
-    <>
-      <div className={styles.loginTitle}>LoginChat</div>
+    <div className={styles.allLogin}>
+      <div className={styles.loginTitle}>
+        <h2 className={styles.title}>Hello!</h2>
+
+        <p className={styles.miniTitle}>Sign in to your account</p>
+      </div>
       <form action="">
         <div className={styles.loginChatButtonWrapper}>
           <div className={styles.loginChatWrapper}>
@@ -18,9 +22,9 @@ export const LoginChat = () => {
               placeholder="비밀번호"
             />
           </div>
-          <button className={styles.loginChatButton}>LOGIN</button>
+          <button className={styles.loginChatButton}>SIGN IN</button>
         </div>
       </form>
-    </>
+    </div>
   );
 };

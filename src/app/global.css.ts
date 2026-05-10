@@ -15,6 +15,8 @@ globalStyle("*", {
 globalStyle("html", {
   fontSize: "16px",
   WebkitTextSizeAdjust: "100%",
+  height: "100%",
+  width: "100%",
 });
 
 /* body */
@@ -32,6 +34,9 @@ globalStyle("body", {
   color: "#111",
 
   overflowX: "hidden",
+
+  height: "100%",
+  width: "100%",
 });
 
 /* media */
