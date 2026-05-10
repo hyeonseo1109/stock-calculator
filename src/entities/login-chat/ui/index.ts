@@ -1,2 +1,2 @@
-export * from "./login-chat";
+export * from "./login-button";
 export * from "./login-input";
