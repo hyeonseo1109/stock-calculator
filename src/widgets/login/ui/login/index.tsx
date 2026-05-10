@@ -19,7 +19,7 @@ export const Login = () => {
             <LoginButton />
             <p className={styles.signUpText}>
               Don't have an account?{" "}
-              <a className={styles.signUpLink} href="sign-up">
+              <a className={styles.signUpLink} href="/sign-up-page">
                 Sign up
               </a>
             </p>

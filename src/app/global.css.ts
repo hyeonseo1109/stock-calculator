@@ -78,4 +78,5 @@ globalStyle("table", {
 /* root */
 globalStyle("#root", {
   minHeight: "100vh",
+  height: "100%",
 });

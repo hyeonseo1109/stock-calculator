@@ -43,23 +43,10 @@ export const allLogin = style({
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  width: "100%",
-  height: "100%",
-  gap: "3rem",
-});
-
-export const loginBox = style({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
   width: "70%",
   height: "70%",
+  gap: "3rem",
   boxShadow: "0 0.6rem 0.7rem #41bd6822",
-  borderRadius: "1rem",
-  padding: "10rem 0",
-  // background:
-  //   "linear-gradient(160deg, #ffffff 80%, #c4df5933 90%, #80df5977 100%), linear-gradient(15deg, #ffe0b8 0%, #df8a59 100%)",
   background: `
     radial-gradient(
       circle at top left,
@@ -75,6 +62,17 @@ export const loginBox = style({
 
     white
   `,
+  borderRadius: "1rem",
+  padding: "10rem 0",
+});
+
+export const loginBox = style({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100%",
+  height: "100%",
 });
 
 export const signUpText = style({
