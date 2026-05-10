@@ -56,7 +56,7 @@ export const allSignUp = style({
 
     radial-gradient(
       circle at bottom right,
-      rgba(120, 220, 120, 0.45),
+      #78dc7873,
       transparent 30%
     ),
 
@@ -66,7 +66,7 @@ export const allSignUp = style({
   padding: "10rem 0",
 });
 
-export const signUpBox = style({
+export const loginBox = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -75,12 +75,12 @@ export const signUpBox = style({
   height: "100%",
 });
 
-export const signUpText = style({
+export const loginText = style({
   fontSize: "0.95rem",
   color: "#aaa",
 });
 
-export const signUpLink = style({
+export const loginLink = style({
   color: "#41bd68",
   textDecoration: "none",
 });

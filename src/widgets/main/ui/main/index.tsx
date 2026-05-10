@@ -1,6 +1,24 @@
+import { useEffect, useState } from "react";
+
+import { getCurrentUser } from "@/features/auth/api";
+
 import * as styles from "./style.css";
 
 export const Main = () => {
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const loadUser = async () => {
+      const user = await getCurrentUser();
+
+      console.log(user);
+
+      setEmail(user?.email ?? "");
+    };
+
+    loadUser();
+  }, []);
+
   return (
     <div className={styles.mainBox}>
       <div className={styles.leftBox}>
@@ -11,6 +29,7 @@ export const Main = () => {
           사용자 친화적인 인터페이스와 정확한 계산 결과로 투자자들이 보다 현명한
           결정을 내릴 수 있도록 지원합니다.
         </p>
+
         <div className={styles.accountBox}>
           <a href="sign-up-page">계정 만들기 &nbsp;→</a>
         </div>
@@ -19,10 +38,14 @@ export const Main = () => {
       <div className={styles.rightBox}>
         <div className={styles.mainTitleBox}>
           <h1 className={styles.mainTitle}>안녕하세요!</h1>
+
           <p className={styles.mainText}>
-            주종목계산기에 오신 것을 환영합니다.
+            {email
+              ? `${email}님 환영합니다.`
+              : "주종목계산기에 오신 것을 환영합니다."}
           </p>
         </div>
+
         <a href="main-page" className={styles.startButton}>
           시작하기
         </a>

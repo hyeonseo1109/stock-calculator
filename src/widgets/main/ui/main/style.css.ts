@@ -59,6 +59,7 @@ export const leftBox = style({
   width: "33%",
   margin: "2rem 5rem",
   height: "85%",
+  maxWidth: "10rem",
 });
 
 export const accountBox = style({
