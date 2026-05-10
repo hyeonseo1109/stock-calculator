@@ -6,6 +6,7 @@ import { SignUpPage } from "@/pages/account/ui";
 import { MainPage } from "@/pages/main/ui";
 
 import "./global.css";
+import { CalculatePage } from "@/pages/calculate/ui";
 
 export function App() {
   useEffect(() => {
@@ -30,7 +31,7 @@ export function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/login-page" element={<LoginPage />} />
         <Route path="/sign-up-page" element={<SignUpPage />} />
-        <Route path="/calculate-page" element={<SignUpPage />} />
+        <Route path="/calculate-page" element={<CalculatePage />} />
       </Routes>
     </BrowserRouter>
   );

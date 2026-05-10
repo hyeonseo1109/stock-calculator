@@ -1,27 +1,27 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signUp } from "@/features/auth/api";
+import { signIn } from "@/features/auth/api";
 
-export const useSignUp = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+export const useLogin = () => {
   const navigate = useNavigate();
 
-  const handleSignUp = async (e: React.FormEvent) => {
+  const [email, setEmail] = useState("");
+
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const data = await signUp(email, password);
-
+      const data = await signIn(email, password);
       console.log(data);
+      alert("로그인 성공");
 
-      alert("회원가입 성공");
       navigate("/calculate-page");
     } catch (error) {
       console.error(error);
 
-      alert("회원가입 실패");
+      alert("로그인 실패");
     }
   };
 
@@ -32,6 +32,6 @@ export const useSignUp = () => {
     setEmail,
     setPassword,
 
-    handleSignUp,
+    handleLogin,
   };
 };
