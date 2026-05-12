@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.105.4",
+    "hangul-js": "^0.2.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.15.0",

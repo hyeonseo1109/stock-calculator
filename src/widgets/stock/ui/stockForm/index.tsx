@@ -20,8 +20,6 @@ interface StockFormProps {
   result: { profit: number; profitRate: number; totalAsset: number };
 }
 
-const ALL = "__ALL__";
-
 export const StockForm = ({
   selectedStock,
   setSelectedStock,

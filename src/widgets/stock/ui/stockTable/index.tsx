@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useStockList } from "@/features/stock/model/useStockList";
 import { StockItemProps } from "@/features/stock/model";
-import { deleteStock } from "@/features/stock/api";
+import { deleteStock, toggleFavorite } from "@/features/stock/api";
+import likeIcon from "@/assets/like.png";
+import unlikeIcon from "@/assets/unlike.png";
 import * as styles from "./style.css";
 
 interface StockTableProps {
@@ -46,7 +48,6 @@ export const StockTable = ({
 
   return (
     <div className={styles.tableCard}>
-      {/* 헤더 영역: 타이틀 + 검색 */}
       <div className={styles.tableHeader}>
         <span className={styles.tableTitle}>
           {selectedStock ? selectedStock : "전체보기"}
@@ -56,6 +57,9 @@ export const StockTable = ({
           placeholder="메모 검색..."
           value={memoSearch}
           onChange={(e) => setMemoSearch(e.target.value)}
+          onCompositionUpdate={(e) =>
+            setMemoSearch((e.target as HTMLInputElement).value)
+          }
         />
       </div>
 
@@ -68,6 +72,7 @@ export const StockTable = ({
           <table className={styles.table}>
             <thead>
               <tr>
+                <th className={styles.th}>★</th>
                 {!selectedStock && <th className={styles.th}>종목</th>}
                 <th className={styles.th}>날짜</th>
                 <th className={styles.th}>현재가</th>
@@ -85,6 +90,26 @@ export const StockTable = ({
                 const isPos = item.profit >= 0;
                 return (
                   <tr key={item.id} className={styles.tr}>
+                    <td className={styles.td}>
+                      <button
+                        className={styles.favoriteBtn}
+                        onClick={async () => {
+                          await toggleFavorite(item.id, item.is_favorite);
+                          refetch();
+                        }}
+                      >
+                        <p
+                          className={
+                            item.is_favorite
+                              ? styles.favoriteActive
+                              : styles.favoriteInactive
+                          }
+                        >
+                          ★
+                        </p>
+                      </button>
+                    </td>
+
                     {!selectedStock && (
                       <td className={styles.td}>
                         <span className={styles.stockBadge}>

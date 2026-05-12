@@ -180,3 +180,28 @@ export const emptyMessage = style({
   color: "#bbb",
   fontSize: "0.95rem",
 });
+
+export const favoriteBtn = style({
+  background: "none",
+  border: "none",
+  cursor: "pointer",
+  padding: "0.2rem",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: "50%",
+  transition: "transform 0.15s",
+  selectors: {
+    "&:hover": {
+      transform: "scale(1.25)",
+    },
+  },
+});
+
+export const favoriteActive = style({
+  color: "#41bd68",
+});
+
+export const favoriteInactive = style({
+  color: "#bdbdbd",
+});

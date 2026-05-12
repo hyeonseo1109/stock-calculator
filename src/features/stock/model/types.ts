@@ -9,4 +9,5 @@ export interface StockItemProps {
   profit_rate: number;
   total_asset: number;
   memo: string;
+  is_favorite: boolean;
 }
