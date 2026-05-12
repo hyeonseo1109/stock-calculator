@@ -47,7 +47,7 @@ export const useStockForm = () => {
         })
         .eq("id", editId);
     } else {
-      // 신규 저장: 새로 insert
+      // 신규 저장:  insert
       await supabase.from("stock").insert({
         user_id: user.id,
         stock_name: stockName,

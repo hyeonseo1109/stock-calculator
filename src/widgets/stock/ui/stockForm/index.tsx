@@ -83,7 +83,7 @@ export const StockForm = ({
           className={styles.input}
           placeholder="매수가"
           type="number"
-          value={buyPrice}
+          value={buyPrice || ""}
           onChange={(e) => setBuyPrice(Number(e.target.value))}
         />
       </div>
@@ -94,7 +94,7 @@ export const StockForm = ({
           className={styles.input}
           placeholder="현재가"
           type="number"
-          value={currentPrice}
+          value={currentPrice || ""}
           onChange={(e) => setCurrentPrice(Number(e.target.value))}
         />
       </div>
@@ -105,7 +105,7 @@ export const StockForm = ({
           className={styles.input}
           placeholder="수량"
           type="number"
-          value={quantity}
+          value={quantity || ""}
           onChange={(e) => setQuantity(Number(e.target.value))}
         />
       </div>
@@ -122,6 +122,7 @@ export const StockForm = ({
 
       <button
         className={styles.saveButton}
+        disabled={!selectedStock}
         onClick={async () => {
           await handleSave();
           await refetch();
@@ -129,7 +130,7 @@ export const StockForm = ({
           onSaved();
         }}
       >
-        저장
+        {selectedStock ? "저장" : "종목을 선택해주세요"}
       </button>
 
       <div className={styles.divider} />

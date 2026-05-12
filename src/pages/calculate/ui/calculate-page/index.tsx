@@ -8,26 +8,45 @@ export const CalculatePage = () => {
   const [selectedStock, setSelectedStock] = useState("");
   const [refetchTrigger, setRefetchTrigger] = useState(0);
   const [memoSearch, setMemoSearch] = useState("");
-  const [page, setPage] = useState(0); // 0: 입력, 1: 표
+  const [page, setPage] = useState(0);
 
   const form = useStockForm();
 
-  // 드래그/스와이프
   const dragStartX = useRef<number | null>(null);
+  const dragStartY = useRef<number | null>(null);
+  const isPageSwipe = useRef(false);
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const onDragStart = (e: React.MouseEvent | React.TouchEvent) => {
-    dragStartX.current = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+
+    dragStartX.current = clientX;
+    dragStartY.current = clientY;
+
+    // 화면 하단 20% 영역에서 시작한 경우에만 페이지 전환 허용
+    const windowHeight = window.innerHeight;
+    isPageSwipe.current = clientY > windowHeight * 0.8;
   };
 
   const onDragEnd = (e: React.MouseEvent | React.TouchEvent) => {
-    if (dragStartX.current === null) return;
+    if (dragStartX.current === null || !isPageSwipe.current) {
+      dragStartX.current = null;
+      dragStartY.current = null;
+      isPageSwipe.current = false;
+      return;
+    }
+
     const endX =
       "changedTouches" in e ? e.changedTouches[0].clientX : e.clientX;
     const diff = dragStartX.current - endX;
+
     if (diff > 50 && page === 0) setPage(1);
     if (diff < -50 && page === 1) setPage(0);
+
     dragStartX.current = null;
+    dragStartY.current = null;
+    isPageSwipe.current = false;
   };
 
   return (
@@ -66,7 +85,6 @@ export const CalculatePage = () => {
           className={styles.mobileSlider}
           style={{ transform: `translateX(${page === 0 ? "0%" : "-100%"})` }}
         >
-          {/* 화면 1: 입력 폼 */}
           <div className={styles.mobilePage}>
             <StockForm
               {...form}
@@ -74,12 +92,11 @@ export const CalculatePage = () => {
               setSelectedStock={setSelectedStock}
               onSaved={() => {
                 setRefetchTrigger((prev) => prev + 1);
-                setPage(1); // 저장 후 자동으로 표 화면으로
+                setPage(1);
               }}
             />
           </div>
 
-          {/* 화면 2: 표 */}
           <div className={styles.mobilePage}>
             <StockTable
               {...form}
@@ -91,7 +108,6 @@ export const CalculatePage = () => {
           </div>
         </div>
 
-        {/* 페이지네이션 */}
         <div className={styles.pagination}>
           <button
             className={`${styles.pageBtn} ${page === 0 ? styles.pageBtnDisabled : ""}`}

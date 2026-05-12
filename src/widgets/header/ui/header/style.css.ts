@@ -57,12 +57,22 @@ export const greetingDark = style({
   fontWeight: "500",
   color: "#ffffff",
   opacity: 0.9,
+  "@media": {
+    "(max-width: 768px)": {
+      display: "none",
+    },
+  },
 });
 
 export const greetingLight = style({
   fontSize: "0.85rem",
   fontWeight: "500",
   color: "#555",
+  "@media": {
+    "(max-width: 768px)": {
+      display: "none",
+    },
+  },
 });
 
 export const logoutButtonDark = style({

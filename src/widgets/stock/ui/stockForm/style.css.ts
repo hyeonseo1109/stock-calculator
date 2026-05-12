@@ -73,11 +73,17 @@ export const saveButton = style({
   boxShadow: "0 2px 8px #41bd6830",
   transition: "opacity 0.2s, transform 0.1s",
   selectors: {
-    "&:hover": {
+    "&:hover:not(:disabled)": {
       opacity: 0.9,
     },
-    "&:active": {
+    "&:active:not(:disabled)": {
       transform: "scale(0.98)",
+    },
+    "&:disabled": {
+      background: "#e0e0e0",
+      boxShadow: "none",
+      cursor: "not-allowed",
+      color: "#aaa",
     },
   },
 });
