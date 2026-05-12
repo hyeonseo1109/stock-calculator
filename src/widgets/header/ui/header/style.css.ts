@@ -95,8 +95,8 @@ export const logoutButtonLight = style({
   transition: "all 0.2s",
   selectors: {
     "&:hover": {
-      borderColor: "#e05555",
-      color: "#e05555",
+      borderColor: "#838383",
+      color: "#636363",
     },
   },
 });
