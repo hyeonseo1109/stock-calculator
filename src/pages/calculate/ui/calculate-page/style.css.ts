@@ -50,7 +50,7 @@ export const mobileSlider = style({
   display: "flex",
   flex: 1,
   minHeight: 0,
-  transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+  transition: "transform 0.1s cubic-bezier(0.12, 1, 0.26, 1)",
   willChange: "transform",
 });
 
