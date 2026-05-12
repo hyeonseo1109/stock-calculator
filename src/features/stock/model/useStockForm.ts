@@ -8,6 +8,7 @@ export const useStockForm = () => {
   const [currentPrice, setCurrentPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
   const [memo, setMemo] = useState("");
+  const [editId, setEditId] = useState<string | null>(null);
 
   const calculate = () => {
     const totalBuy = buyPrice * quantity;
@@ -37,19 +38,25 @@ export const useStockForm = () => {
 
     const { totalBuy, profit, profitRate, totalAsset } = calculate();
 
-    await upsertStock({
-      userId: user.id,
-      stockName,
-      createdDate: new Date().toISOString().slice(0, 10),
-      buyPrice,
-      currentPrice,
+    await supabase.from("stock").upsert({
+      id: editId ?? undefined, // 👈 있으면 수정, 없으면 생성
+      user_id: user.id,
+
+      stock_name: stockName,
+      created_date: new Date().toISOString().slice(0, 10),
+
+      buy_price: buyPrice,
+      current_price: currentPrice,
       quantity,
       memo,
-      totalBuy,
+
+      total_buy: totalBuy,
       profit,
-      profitRate,
-      totalAsset,
+      profit_rate: profitRate,
+      total_asset: totalAsset,
     });
+
+    setEditId(null);
   };
 
   const result = calculate();
@@ -71,5 +78,8 @@ export const useStockForm = () => {
     handleSave,
 
     result,
+
+    editId,
+    setEditId,
   };
 };
