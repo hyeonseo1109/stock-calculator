@@ -1,16 +1,41 @@
 import { style } from "@vanilla-extract/css";
 
-// 로그인 input (아이디, 비밀번호)
+export const wrapper = style({
+  position: "relative",
+  width: "100%",
+});
+
 export const loginInput = style({
   borderRadius: "50rem",
-  padding: "1rem",
+  padding: "0 2.8rem 0 1rem",
   width: "100%",
   height: "2.5rem",
-
-  // 파랑보라빛 그라데이션
-  // boxShadow: "0 0.2rem 0.7rem #0011ff33",
-
-  // 연두빛 그라데이션
   boxShadow: "0 0.15rem 0.7rem #41bd6833",
 });
-loginInput;
+
+export const toggleButton = style({
+  position: "absolute",
+  right: "0.9rem",
+  top: "50%",
+  transform: "translateY(-50%)",
+  background: "none",
+  border: "none",
+  cursor: "pointer",
+  fontSize: "1rem",
+  lineHeight: 1,
+  padding: 0,
+  display: "flex",
+  alignItems: "center",
+  opacity: 0.6,
+  transition: "opacity 0.15s",
+  selectors: {
+    "&:hover": {
+      opacity: 1,
+    },
+  },
+});
+
+export const toggleIcon = style({
+  width: "1.2rem",
+  height: "auto",
+});

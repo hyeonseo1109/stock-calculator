@@ -3,8 +3,9 @@ import { style } from "@vanilla-extract/css";
 export const pageWrapper = style({
   display: "flex",
   flexDirection: "column",
-  minHeight: "100vh",
+  height: "100vh",
   backgroundColor: "#ffffff",
+  overflow: "hidden",
 });
 
 export const inner = style({
@@ -14,6 +15,7 @@ export const inner = style({
   padding: "2.5rem 1.5rem",
   gap: "2rem",
   flex: 1,
+  overflowY: "auto",
 });
 
 export const pageTitle = style({

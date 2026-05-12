@@ -12,9 +12,9 @@ export const CalculatePage = () => {
 
   return (
     <div className={styles.pageWrapper}>
-      <Header />
+      <Header variant="light" />
       <div className={styles.inner}>
-        <h1 className={styles.pageTitle}>주식 계산기</h1>
+        {/* <h1 className={styles.pageTitle}>주식 계산기</h1> */}
         <div className={styles.contentArea}>
           <StockForm
             {...form}
