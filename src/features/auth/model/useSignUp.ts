@@ -12,11 +12,6 @@ export const useSignUp = () => {
     e.preventDefault();
 
     try {
-      const data = await signUp(email, password);
-
-      console.log(data);
-
-      alert("회원가입 성공");
       navigate("/calculate-page");
     } catch (error) {
       console.error(error);

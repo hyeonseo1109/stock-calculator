@@ -4,34 +4,21 @@ import { signIn } from "@/features/auth/api";
 
 export const useLogin = () => {
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
-
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(false);
 
     try {
-      const data = await signIn(email, password);
-      console.log(data);
-      alert("로그인 성공");
-
+      await signIn(email, password);
       navigate("/calculate-page");
-    } catch (error) {
-      console.error(error);
-
-      alert("로그인 실패");
+    } catch {
+      setError(true);
     }
   };
 
-  return {
-    email,
-    password,
-
-    setEmail,
-    setPassword,
-
-    handleLogin,
-  };
+  return { email, password, setEmail, setPassword, handleLogin, error };
 };

@@ -27,7 +27,7 @@ export const SignUp = () => {
             <div className={styles.signUpChatWrapper}>
               <LoginInput
                 type="text"
-                placeholder="아이디"
+                placeholder="이메일"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />

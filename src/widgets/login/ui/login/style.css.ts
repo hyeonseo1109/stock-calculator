@@ -84,3 +84,9 @@ export const signUpLink = style({
   color: "#41bd68",
   textDecoration: "none",
 });
+
+export const miniTitleError = style({
+  fontSize: "1rem",
+  color: "#e05555",
+  fontWeight: "500",
+});
