@@ -3,14 +3,13 @@ import * as styles from "./style.css";
 
 interface Option {
   text: string;
+  bold?: boolean;
 }
 
 interface DropDownProps {
   placeholder: string;
   options: Option[];
-
   value?: string;
-
   onSelect?: (value: string) => void;
 }
 
@@ -26,7 +25,6 @@ export const DropDown = ({
     <div className={styles.wrapper}>
       <div className={styles.trigger} onClick={() => setOpen((prev) => !prev)}>
         <span className={styles.triggerText}>{value || placeholder}</span>
-
         <span className={styles.icon}>{open ? "▲" : "▼"}</span>
       </div>
 
@@ -35,7 +33,7 @@ export const DropDown = ({
           {options.map((option) => (
             <div
               key={option.text}
-              className={styles.option}
+              className={option.bold ? styles.optionBold : styles.option}
               onClick={() => {
                 onSelect?.(option.text);
                 setOpen(false);

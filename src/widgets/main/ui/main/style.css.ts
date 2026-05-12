@@ -8,6 +8,12 @@ export const main = style({
   padding: "5rem 1.5rem 4rem",
   flex: 1,
   overflowY: "auto",
+  "@media": {
+    "(max-width: 640px)": {
+      padding: "2.5rem 1.2rem 2rem",
+      gap: "2rem",
+    },
+  },
 });
 
 export const heroSection = style({
@@ -17,6 +23,11 @@ export const heroSection = style({
   gap: "1rem",
   textAlign: "center",
   maxWidth: "36rem",
+  "@media": {
+    "(max-width: 640px)": {
+      gap: "0.8rem",
+    },
+  },
 });
 
 export const greeting = style({
@@ -24,6 +35,11 @@ export const greeting = style({
   color: "#e1ffe5",
   fontWeight: "500",
   letterSpacing: "0.02em",
+  "@media": {
+    "(max-width: 640px)": {
+      fontSize: "0.9rem",
+    },
+  },
 });
 
 export const title = style({
@@ -33,12 +49,22 @@ export const title = style({
   lineHeight: 1.1,
   letterSpacing: "-0.02em",
   margin: 0,
+  "@media": {
+    "(max-width: 640px)": {
+      fontSize: "2.6rem",
+    },
+  },
 });
 
 export const subtitle = style({
   fontSize: "1.1rem",
   color: "#d4f5dc",
   margin: 0,
+  "@media": {
+    "(max-width: 640px)": {
+      fontSize: "0.9rem",
+    },
+  },
 });
 
 export const startButton = style({
@@ -58,6 +84,12 @@ export const startButton = style({
       boxShadow: "0 6px 24px #00000025",
     },
   },
+  "@media": {
+    "(max-width: 640px)": {
+      padding: "0.75rem 2rem",
+      fontSize: "0.95rem",
+    },
+  },
 });
 
 export const cardRow = style({
@@ -68,6 +100,7 @@ export const cardRow = style({
   "@media": {
     "(max-width: 640px)": {
       flexDirection: "column",
+      gap: "1rem",
     },
   },
 });
@@ -82,12 +115,23 @@ export const card = style({
   borderRadius: "1.2rem",
   padding: "1.8rem",
   boxShadow: "0 2px 16px #00000010",
+  "@media": {
+    "(max-width: 640px)": {
+      padding: "1.3rem",
+      gap: "0.6rem",
+    },
+  },
 });
 
 export const cardTitle = style({
   fontSize: "1rem",
   fontWeight: "700",
   color: "#1a1a1a",
+  "@media": {
+    "(max-width: 640px)": {
+      fontSize: "0.92rem",
+    },
+  },
 });
 
 export const cardText = style({
@@ -95,6 +139,12 @@ export const cardText = style({
   color: "#444",
   lineHeight: 1.8,
   wordBreak: "keep-all",
+  "@media": {
+    "(max-width: 640px)": {
+      fontSize: "0.82rem",
+      lineHeight: 1.7,
+    },
+  },
 });
 
 export const signUpButton = style({

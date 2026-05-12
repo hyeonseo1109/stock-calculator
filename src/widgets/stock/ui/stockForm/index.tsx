@@ -42,7 +42,7 @@ export const StockForm = ({
   const { names, refetch } = useStockNames();
 
   const dropdownOptions = [
-    { text: "전체보기" },
+    { text: "전체보기", bold: true },
     ...names.map((name) => ({ text: name })),
   ];
 
