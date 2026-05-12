@@ -62,7 +62,11 @@ export const useStockForm = () => {
         total_asset: totalAsset,
       });
     }
-
+    setStockName("");
+    setBuyPrice(0);
+    setCurrentPrice(0);
+    setQuantity(0);
+    setMemo("");
     setEditId(null);
   };
 
