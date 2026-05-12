@@ -11,11 +11,7 @@ export const Login = () => {
       <div className={styles.allLogin}>
         <div className={styles.loginTitle}>
           <h2 className={styles.title}>Hello!</h2>
-          <p className={error ? styles.miniTitleError : styles.miniTitle}>
-            {error
-              ? "Please check your email and password."
-              : "Sign in to your account"}
-          </p>
+          <p className={styles.miniTitle}>Sign in to your account</p>
         </div>
 
         <form onSubmit={handleLogin}>
@@ -35,6 +31,7 @@ export const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 style={error ? { boxShadow: "0 0 0 1.5px #e05555" } : {}}
               />
+              {error && <p className={styles.errorText}>{error}</p>}
             </div>
 
             <LoginButton text="LOGIN" type="submit" />

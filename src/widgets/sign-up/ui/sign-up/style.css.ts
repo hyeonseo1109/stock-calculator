@@ -84,3 +84,11 @@ export const loginLink = style({
   color: "#41bd68",
   textDecoration: "none",
 });
+
+export const errorText = style({
+  fontSize: "0.78rem",
+  color: "#e05555",
+  fontWeight: "500",
+  paddingLeft: "0.5rem",
+  lineHeight: 1.4,
+});
