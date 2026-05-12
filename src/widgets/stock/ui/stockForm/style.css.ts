@@ -80,10 +80,10 @@ export const saveButton = style({
       transform: "scale(0.98)",
     },
     "&:disabled": {
-      background: "#e0e0e0",
+      background: "#f0f0f0",
       boxShadow: "none",
       cursor: "not-allowed",
-      color: "#aaa",
+      color: "#bdbdbd",
     },
   },
 });

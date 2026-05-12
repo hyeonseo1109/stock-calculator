@@ -205,3 +205,53 @@ export const favoriteActive = style({
 export const favoriteInactive = style({
   color: "#bdbdbd",
 });
+
+export const pagination = style({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "0.4rem",
+  padding: "1rem",
+  borderTop: "1px solid #f0f0f0",
+  flexWrap: "wrap",
+});
+
+export const pageButton = style({
+  minWidth: "2rem",
+  height: "2rem",
+  borderRadius: "0.5rem",
+  border: "1px solid #dcdcdc",
+  backgroundColor: "#fff",
+  color: "#555",
+  fontSize: "0.82rem",
+  cursor: "pointer",
+  padding: "0 0.7rem",
+  transition: "all 0.15s",
+
+  selectors: {
+    "&:hover": {
+      borderColor: "#41bd68",
+      color: "#41bd68",
+    },
+
+    "&:disabled": {
+      opacity: 0.4,
+      cursor: "default",
+    },
+  },
+});
+
+export const activePageButton = style([
+  pageButton,
+  {
+    backgroundColor: "#41bd68",
+    borderColor: "#41bd68",
+    color: "#fff",
+
+    selectors: {
+      "&:hover": {
+        color: "#fff",
+      },
+    },
+  },
+]);
