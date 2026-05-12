@@ -11,6 +11,7 @@ import * as styles from "./style.css";
 
 interface StockTableProps {
   selectedStock: string;
+  setSelectedStock: (value: string) => void;
   refetchTrigger: number;
   memoSearch: string;
   setMemoSearch: (value: string) => void;
@@ -20,6 +21,7 @@ interface StockTableProps {
   setCurrentPrice: (price: number) => void;
   setQuantity: (quantity: number) => void;
   setMemo: (memo: string) => void;
+  moveToFormPage?: () => void;
 }
 
 const formatNumber = (n: number) => n.toLocaleString();
@@ -35,6 +37,8 @@ export const StockTable = ({
   setCurrentPrice,
   setQuantity,
   setMemo,
+  setSelectedStock,
+  moveToFormPage,
 }: StockTableProps) => {
   const { list, refetch, page, setPage, totalPage } = useStockList(
     selectedStock,
@@ -174,16 +178,13 @@ export const StockTable = ({
                             className={styles.editButton}
                             onClick={() => {
                               setEditId(item.id);
-
                               setStockName(item.stock_name);
-
+                              setSelectedStock(item.stock_name);
                               setBuyPrice(item.buy_price);
-
                               setCurrentPrice(item.current_price);
-
                               setQuantity(item.quantity);
-
                               setMemo(item.memo);
+                              moveToFormPage?.();
                             }}
                           >
                             수정
