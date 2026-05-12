@@ -255,3 +255,23 @@ export const activePageButton = style([
     },
   },
 ]);
+
+export const copyButton = style({
+  padding: "0.3rem 0.85rem",
+  borderRadius: "50rem",
+  border: "1.5px solid #a3a3a3",
+  color: "#a3a3a3",
+  fontSize: "0.78rem",
+  fontWeight: "600",
+  cursor: "pointer",
+  backgroundColor: "transparent",
+  transition: "all 0.2s",
+  whiteSpace: "nowrap",
+
+  selectors: {
+    "&:hover": {
+      backgroundColor: "#a3a3a3",
+      color: "#ffffff",
+    },
+  },
+});

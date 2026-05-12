@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import { useStockList } from "@/features/stock/model/useStockList";
 import { StockItemProps } from "@/features/stock/model";
-import { deleteStock, toggleFavorite } from "@/features/stock/api";
+import {
+  deleteStock,
+  toggleFavorite,
+  duplicateStock,
+} from "@/features/stock/api";
 import { mmdd as formatdate } from "@/widgets/stock/util";
 import * as styles from "./style.css";
 
@@ -183,6 +187,17 @@ export const StockTable = ({
                             }}
                           >
                             수정
+                          </button>
+
+                          <button
+                            className={styles.copyButton}
+                            onClick={async () => {
+                              await duplicateStock(item);
+
+                              refetch();
+                            }}
+                          >
+                            복제
                           </button>
 
                           <button
