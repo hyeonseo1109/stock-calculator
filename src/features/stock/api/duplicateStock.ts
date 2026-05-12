@@ -1,5 +1,6 @@
 import { supabase } from "@/shared/api";
 import { StockItemProps } from "@/features/stock/model";
+import { getKSTDateString } from "@/widgets/stock/util";
 
 export const duplicateStock = async (item: StockItemProps) => {
   const {
@@ -8,7 +9,7 @@ export const duplicateStock = async (item: StockItemProps) => {
 
   if (!user) return;
 
-  const today = new Date().toISOString().slice(0, 10);
+  const today = getKSTDateString();
 
   const totalBuy = item.buy_price * item.quantity;
 

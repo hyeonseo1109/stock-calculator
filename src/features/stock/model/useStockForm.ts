@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { supabase } from "@/shared/api";
+import { getKSTDateString } from "@/widgets/stock/util";
 
 export const useStockForm = () => {
   const [stockName, setStockName] = useState("");
@@ -27,8 +28,8 @@ export const useStockForm = () => {
     if (!user) return;
 
     const { totalBuy, profit, profitRate, totalAsset } = calculate();
-    const today = new Date().toISOString().slice(0, 10);
 
+    const today = getKSTDateString();
     if (editId) {
       // 수정 모드: 기존 행 업데이트
       await supabase
