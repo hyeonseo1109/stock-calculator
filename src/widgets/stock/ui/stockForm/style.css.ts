@@ -12,6 +12,11 @@ export const formWrapper = style({
   width: "100%",
   maxWidth: "22rem",
   flexShrink: 0,
+  "@media": {
+    "(max-width: 768px)": {
+      maxWidth: "100%",
+    },
+  },
 });
 
 export const section = style({

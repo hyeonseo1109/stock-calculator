@@ -60,6 +60,9 @@ export const mobilePage = style({
   overflowY: "auto",
   padding: "1.5rem 1rem",
   boxSizing: "border-box",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "flex-start",
 });
 
 export const pagination = style({
@@ -67,7 +70,7 @@ export const pagination = style({
   justifyContent: "center",
   alignItems: "center",
   gap: "1.5rem",
-  padding: "0.8rem 0",
+  padding: "0.4rem 0",
   borderTop: "1px solid #e6f5eb",
   backgroundColor: "#ffffff",
   flexShrink: 0,

@@ -24,8 +24,10 @@ export const Main = () => {
         <p className={styles.greeting}>
           {isLoggedIn ? `${email.split("@")[0]}님, 안녕하세요!` : "안녕하세요!"}
         </p>
-        <h1 className={styles.title}>주식 계산기</h1>
-        <p className={styles.subtitle}>주종목계산기에 오신 것을 환영합니다</p>
+        <h1 className={styles.title}>주식 수익 계산기</h1>
+        <p className={styles.subtitle}>
+          주식 수익 계산기에 오신 것을 환영합니다
+        </p>
 
         <a
           href={isLoggedIn ? "/calculate-page" : "/login-page"}

@@ -24,7 +24,7 @@ export const Header = ({ variant = "dark" }: HeaderProps) => {
   return (
     <header className={isLight ? styles.headerLight : styles.headerDark}>
       <a href="/" className={isLight ? styles.logoLight : styles.logoDark}>
-        주식계산기
+        주식 수익 계산기
       </a>
 
       <div className={styles.right}>
