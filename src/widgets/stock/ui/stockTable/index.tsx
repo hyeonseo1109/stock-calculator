@@ -1,68 +1,131 @@
+import { useEffect } from "react";
 import { useStockList } from "@/features/stock/model/useStockList";
-import { useStockForm } from "@/features/stock/model/useStockForm";
-
 import { StockItemProps } from "@/features/stock/model";
+import * as styles from "./style.css";
 
 interface StockTableProps {
   selectedStock: string;
+  refetchTrigger: number;
+  setEditId: (id: string) => void;
+  setStockName: (name: string) => void;
+  setBuyPrice: (price: number) => void;
+  setCurrentPrice: (price: number) => void;
+  setQuantity: (quantity: number) => void;
+  setMemo: (memo: string) => void;
 }
 
-export const StockTable = ({ selectedStock }: StockTableProps) => {
-  const { list } = useStockList(selectedStock);
+const formatDate = (dateStr: string) => {
+  const date = new Date(dateStr);
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${m}.${d}`;
+};
 
-  const {
-    setEditId,
-    setStockName,
-    setBuyPrice,
-    setCurrentPrice,
-    setQuantity,
-    setMemo,
-  } = useStockForm();
+const formatNumber = (n: number) => n.toLocaleString();
+
+export const StockTable = ({
+  selectedStock,
+  refetchTrigger,
+  setEditId,
+  setStockName,
+  setBuyPrice,
+  setCurrentPrice,
+  setQuantity,
+  setMemo,
+}: StockTableProps) => {
+  const { list, refetch } = useStockList(selectedStock);
+
+  useEffect(() => {
+    if (refetchTrigger > 0) refetch();
+  }, [refetchTrigger]);
 
   if (!selectedStock) {
-    return <div>종목을 선택해주세요.</div>;
+    return (
+      <div className={styles.tableCard}>
+        <p className={styles.emptyMessage}>종목을 선택해주세요.</p>
+      </div>
+    );
+  }
+
+  if (list.length === 0) {
+    return (
+      <div className={styles.tableCard}>
+        <p className={styles.emptyMessage}>저장된 데이터가 없습니다.</p>
+      </div>
+    );
   }
 
   return (
-    <div>
-      {/* 헤더 */}
-      <div>
-        <span>날짜</span>
-        <span>현재가</span>
-        <span>차액</span>
-        <span>수익</span>
-        <span>수익률</span>
-        <span>총자산</span>
-        <span>메모</span>
-        <span>수정</span>
+    <div className={styles.tableCard}>
+      <div className={styles.tableScroll}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th className={styles.th}>날짜</th>
+              <th className={styles.th}>현재가</th>
+              <th className={styles.th}>차액</th>
+              <th className={styles.th}>수익</th>
+              <th className={styles.th}>수익률</th>
+              <th className={styles.th}>총자산</th>
+              <th className={`${styles.th} ${styles.thMemo}`}>메모</th>
+              <th className={styles.th}></th>
+            </tr>
+          </thead>
+          <tbody>
+            {list.map((item: StockItemProps) => {
+              const diff = item.current_price - item.buy_price;
+              const isPos = item.profit >= 0;
+              return (
+                <tr key={item.id} className={styles.tr}>
+                  <td className={styles.td}>{formatDate(item.created_date)}</td>
+                  <td className={styles.td}>
+                    {formatNumber(item.current_price)}
+                  </td>
+                  <td
+                    className={`${styles.td} ${diff >= 0 ? styles.pos : styles.neg}`}
+                  >
+                    {diff >= 0 ? "+" : ""}
+                    {formatNumber(diff)}
+                  </td>
+                  <td
+                    className={`${styles.td} ${isPos ? styles.pos : styles.neg}`}
+                  >
+                    {isPos ? "+" : ""}
+                    {formatNumber(item.profit)}
+                  </td>
+                  <td
+                    className={`${styles.td} ${isPos ? styles.pos : styles.neg}`}
+                  >
+                    {isPos ? "+" : ""}
+                    {item.profit_rate}%
+                  </td>
+                  <td className={styles.td}>
+                    {formatNumber(item.total_asset)}
+                  </td>
+                  <td className={`${styles.td} ${styles.tdMemo}`}>
+                    {item.memo}
+                  </td>
+                  <td className={styles.td}>
+                    <button
+                      className={styles.editButton}
+                      onClick={() => {
+                        setEditId(item.id);
+                        setStockName(item.stock_name);
+                        setBuyPrice(item.buy_price);
+                        setCurrentPrice(item.current_price);
+                        setQuantity(item.quantity);
+                        setMemo(item.memo);
+                      }}
+                    >
+                      수정
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
-
-      {/* 리스트 */}
-      {list.map((item: StockItemProps) => (
-        <div key={item.id}>
-          <span>{item.created_date}</span>
-          <span>{item.current_price}</span>
-          <span>{item.current_price - item.buy_price}</span>
-          <span>{item.profit}</span>
-          <span>{item.profit_rate}%</span>
-          <span>{item.total_asset}</span>
-          <span>{item.memo}</span>
-
-          <button
-            onClick={() => {
-              setEditId(item.id);
-
-              setStockName(item.stock_name);
-              setBuyPrice(item.buy_price);
-              setCurrentPrice(item.current_price);
-              setQuantity(item.quantity);
-              setMemo(item.memo);
-            }}
-          >
-            수정
-          </button>
-        </div>
-      ))}
     </div>
   );
 };
