@@ -1,9 +1,9 @@
 import { useState } from "react";
-
 import { supabase } from "@/shared/api";
 import { upsertStock } from "../api";
 
 export const useStockForm = () => {
+  const [stockName, setStockName] = useState("");
   const [buyPrice, setBuyPrice] = useState(0);
   const [currentPrice, setCurrentPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
@@ -11,11 +11,21 @@ export const useStockForm = () => {
 
   const calculate = () => {
     const totalBuy = buyPrice * quantity;
+
     const profit = (currentPrice - buyPrice) * quantity;
-    const profitRate = totalBuy ? (profit / totalBuy) * 100 : 0;
+
+    const profitRate = totalBuy
+      ? Number(((profit / totalBuy) * 100).toFixed(2))
+      : 0;
+
     const totalAsset = totalBuy + profit;
 
-    return { totalBuy, profit, profitRate, totalAsset };
+    return {
+      totalBuy,
+      profit,
+      profitRate,
+      totalAsset,
+    };
   };
 
   const handleSave = async () => {
@@ -29,14 +39,12 @@ export const useStockForm = () => {
 
     await upsertStock({
       userId: user.id,
-      stockName: "default", // 나중에 dropdown 연결
+      stockName,
       createdDate: new Date().toISOString().slice(0, 10),
-
       buyPrice,
       currentPrice,
       quantity,
       memo,
-
       totalBuy,
       profit,
       profitRate,
@@ -47,15 +55,21 @@ export const useStockForm = () => {
   const result = calculate();
 
   return {
+    stockName,
+    setStockName,
+
     buyPrice,
     currentPrice,
     quantity,
     memo,
+
     setBuyPrice,
     setCurrentPrice,
     setQuantity,
     setMemo,
+
     handleSave,
+
     result,
   };
 };

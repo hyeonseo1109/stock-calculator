@@ -4,22 +4,28 @@ import { Button, Input } from "@/entities/stock/ui";
 
 export const StockForm = () => {
   const {
+    stockName,
+    setStockName,
     buyPrice,
     currentPrice,
     quantity,
     memo,
-
     setBuyPrice,
     setCurrentPrice,
     setQuantity,
     setMemo,
-
     handleSave,
     result,
   } = useStockForm();
 
   return (
     <div>
+      <Input
+        placeholder="종목 이름"
+        value={stockName}
+        onChange={(e) => setStockName(e.target.value)}
+      />
+
       <Input
         placeholder="매수가"
         type="number"
