@@ -4,9 +4,10 @@ import { supabase } from "@/shared/api";
 import { LoginPage } from "@/pages/account/ui";
 import { SignUpPage } from "@/pages/account/ui";
 import { MainPage } from "@/pages/main/ui";
+import { CalculatePage } from "@/pages/calculate/ui";
+import { ProtectedRoute } from "@/shared/ui/protected-route";
 
 import "./global.css";
-import { CalculatePage } from "@/pages/calculate/ui";
 
 export function App() {
   useEffect(() => {
@@ -14,10 +15,7 @@ export function App() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       console.log("로그인 상태 변경");
-
-      console.log(session?.user);
-
-      console.log(session?.user.email);
+      console.log(session?.user?.email);
     });
 
     return () => {
@@ -31,7 +29,14 @@ export function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/login-page" element={<LoginPage />} />
         <Route path="/sign-up-page" element={<SignUpPage />} />
-        <Route path="/calculate-page" element={<CalculatePage />} />
+        <Route
+          path="/calculate-page"
+          element={
+            <ProtectedRoute>
+              <CalculatePage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -103,3 +103,28 @@ export const emptyMessage = style({
   color: "#bbb",
   fontSize: "0.95rem",
 });
+
+export const actionButtons = style({
+  display: "flex",
+  gap: "0.4rem",
+  justifyContent: "center",
+});
+
+export const deleteButton = style({
+  padding: "0.3rem 0.85rem",
+  borderRadius: "50rem",
+  border: "1.5px solid #e05555",
+  color: "#e05555",
+  fontSize: "0.78rem",
+  fontWeight: "600",
+  cursor: "pointer",
+  backgroundColor: "transparent",
+  transition: "all 0.2s",
+  whiteSpace: "nowrap",
+  selectors: {
+    "&:hover": {
+      backgroundColor: "#e05555",
+      color: "#ffffff",
+    },
+  },
+});

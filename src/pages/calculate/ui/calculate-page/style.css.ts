@@ -3,11 +3,17 @@ import { style } from "@vanilla-extract/css";
 export const pageWrapper = style({
   display: "flex",
   flexDirection: "column",
-  alignItems: "center",
   minHeight: "100vh",
   backgroundColor: "#ffffff",
+});
+
+export const inner = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
   padding: "2.5rem 1.5rem",
   gap: "2rem",
+  flex: 1,
 });
 
 export const pageTitle = style({
@@ -27,7 +33,6 @@ export const contentArea = style({
   width: "100%",
   maxWidth: "72rem",
   alignItems: "flex-start",
-
   "@media": {
     "(max-width: 768px)": {
       flexDirection: "column",

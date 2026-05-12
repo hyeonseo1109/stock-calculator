@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useStockList } from "@/features/stock/model/useStockList";
 import { StockItemProps } from "@/features/stock/model";
+import { deleteStock } from "@/features/stock/api";
 import * as styles from "./style.css";
 
 interface StockTableProps {
@@ -106,19 +107,31 @@ export const StockTable = ({
                     {item.memo}
                   </td>
                   <td className={styles.td}>
-                    <button
-                      className={styles.editButton}
-                      onClick={() => {
-                        setEditId(item.id);
-                        setStockName(item.stock_name);
-                        setBuyPrice(item.buy_price);
-                        setCurrentPrice(item.current_price);
-                        setQuantity(item.quantity);
-                        setMemo(item.memo);
-                      }}
-                    >
-                      수정
-                    </button>
+                    <div className={styles.actionButtons}>
+                      <button
+                        className={styles.editButton}
+                        onClick={() => {
+                          setEditId(item.id);
+                          setStockName(item.stock_name);
+                          setBuyPrice(item.buy_price);
+                          setCurrentPrice(item.current_price);
+                          setQuantity(item.quantity);
+                          setMemo(item.memo);
+                        }}
+                      >
+                        수정
+                      </button>
+                      <button
+                        className={styles.deleteButton}
+                        onClick={async () => {
+                          if (!confirm("삭제하시겠습니까?")) return;
+                          await deleteStock(item.id);
+                          refetch();
+                        }}
+                      >
+                        삭제
+                      </button>
+                    </div>
                   </td>
                 </tr>
               );
