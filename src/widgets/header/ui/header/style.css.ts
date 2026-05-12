@@ -81,6 +81,11 @@ export const logoutButtonDark = style({
       borderColor: "#ffffff",
     },
   },
+  "@media": {
+    "(max-width: 768px)": {
+      fontSize: "0.73rem",
+    },
+  },
 });
 
 export const logoutButtonLight = style({
@@ -97,6 +102,11 @@ export const logoutButtonLight = style({
     "&:hover": {
       borderColor: "#838383",
       color: "#636363",
+    },
+  },
+  "@media": {
+    "(max-width: 768px)": {
+      fontSize: "0.73rem",
     },
   },
 });
