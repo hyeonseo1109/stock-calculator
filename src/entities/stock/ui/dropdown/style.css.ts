@@ -64,7 +64,7 @@ export const optionBold = style({
   padding: "0 1rem",
   cursor: "pointer",
   fontSize: "0.95rem",
-  color: "#222",
+  color: "#41bd68",
   fontWeight: "700",
   selectors: {
     "&:hover": {
