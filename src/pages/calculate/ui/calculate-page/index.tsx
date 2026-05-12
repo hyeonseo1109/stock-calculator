@@ -7,6 +7,7 @@ import * as styles from "./style.css";
 export const CalculatePage = () => {
   const [selectedStock, setSelectedStock] = useState("");
   const [refetchTrigger, setRefetchTrigger] = useState(0);
+  const [memoSearch, setMemoSearch] = useState("");
 
   const form = useStockForm();
 
@@ -14,7 +15,6 @@ export const CalculatePage = () => {
     <div className={styles.pageWrapper}>
       <Header variant="light" />
       <div className={styles.inner}>
-        {/* <h1 className={styles.pageTitle}>주식 계산기</h1> */}
         <div className={styles.contentArea}>
           <StockForm
             {...form}
@@ -26,6 +26,8 @@ export const CalculatePage = () => {
             {...form}
             selectedStock={selectedStock}
             refetchTrigger={refetchTrigger}
+            memoSearch={memoSearch}
+            setMemoSearch={setMemoSearch}
           />
         </div>
       </div>

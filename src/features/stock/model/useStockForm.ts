@@ -29,37 +29,39 @@ export const useStockForm = () => {
     const { totalBuy, profit, profitRate, totalAsset } = calculate();
     const today = new Date().toISOString().slice(0, 10);
 
-    // editId가 없을 때 → 오늘 날짜 + 같은 종목 행이 있는지 먼저 확인
-    let resolvedId = editId;
-
-    if (!resolvedId) {
-      const { data: existing } = await supabase
+    if (editId) {
+      // 수정 모드: 기존 행 업데이트
+      await supabase
         .from("stock")
-        .select("id")
-        .eq("user_id", user.id)
-        .eq("stock_name", stockName)
-        .eq("created_date", today)
-        .maybeSingle();
-
-      if (existing) {
-        resolvedId = existing.id;
-      }
+        .update({
+          stock_name: stockName,
+          created_date: today,
+          buy_price: buyPrice,
+          current_price: currentPrice,
+          quantity,
+          memo,
+          total_buy: totalBuy,
+          profit,
+          profit_rate: profitRate,
+          total_asset: totalAsset,
+        })
+        .eq("id", editId);
+    } else {
+      // 신규 저장: 새로 insert
+      await supabase.from("stock").insert({
+        user_id: user.id,
+        stock_name: stockName,
+        created_date: today,
+        buy_price: buyPrice,
+        current_price: currentPrice,
+        quantity,
+        memo,
+        total_buy: totalBuy,
+        profit,
+        profit_rate: profitRate,
+        total_asset: totalAsset,
+      });
     }
-
-    await supabase.from("stock").upsert({
-      ...(resolvedId ? { id: resolvedId } : {}),
-      user_id: user.id,
-      stock_name: stockName,
-      created_date: today,
-      buy_price: buyPrice,
-      current_price: currentPrice,
-      quantity,
-      memo,
-      total_buy: totalBuy,
-      profit,
-      profit_rate: profitRate,
-      total_asset: totalAsset,
-    });
 
     setEditId(null);
   };

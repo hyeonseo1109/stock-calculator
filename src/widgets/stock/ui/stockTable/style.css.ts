@@ -8,6 +8,44 @@ export const tableCard = style({
   boxShadow: "0 2px 16px #41bd6814",
   overflow: "hidden",
   minWidth: 0,
+  display: "flex",
+  flexDirection: "column",
+});
+
+export const tableHeader = style({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  padding: "1rem 1.4rem",
+  borderBottom: "1.5px solid #e6f5eb",
+  gap: "1rem",
+});
+
+export const tableTitle = style({
+  fontSize: "0.95rem",
+  fontWeight: "700",
+  color: "#1a1a1a",
+  whiteSpace: "nowrap",
+});
+
+export const searchInput = style({
+  height: "2.1rem",
+  padding: "0 0.9rem",
+  borderRadius: "50rem",
+  border: "1.5px solid #e0e0e0",
+  fontSize: "0.85rem",
+  color: "#333",
+  backgroundColor: "#fafafa",
+  outline: "none",
+  width: "12rem",
+  transition: "border-color 0.2s, box-shadow 0.2s",
+  selectors: {
+    "&:focus": {
+      borderColor: "#41bd68",
+      boxShadow: "0 0 0 3px #41bd6818",
+      backgroundColor: "#ffffff",
+    },
+  },
 });
 
 export const tableScroll = style({
@@ -68,14 +106,28 @@ export const tdMemo = style({
   maxWidth: "12rem",
 });
 
+// 양수 → 빨간색
 export const pos = style({
-  color: "#41bd68",
+  color: "#e05555",
   fontWeight: "700",
 });
 
+// 음수 → 파란색
 export const neg = style({
-  color: "#e05555",
+  color: "#3b82f6",
   fontWeight: "700",
+});
+
+export const stockBadge = style({
+  display: "inline-block",
+  padding: "0.2rem 0.7rem",
+  borderRadius: "50rem",
+  backgroundColor: "#f0faf3",
+  border: "1px solid #d4f0dc",
+  fontSize: "0.8rem",
+  fontWeight: "600",
+  color: "#41bd68",
+  whiteSpace: "nowrap",
 });
 
 export const editButton = style({
@@ -97,19 +149,6 @@ export const editButton = style({
   },
 });
 
-export const emptyMessage = style({
-  padding: "3rem",
-  textAlign: "center",
-  color: "#bbb",
-  fontSize: "0.95rem",
-});
-
-export const actionButtons = style({
-  display: "flex",
-  gap: "0.4rem",
-  justifyContent: "center",
-});
-
 export const deleteButton = style({
   padding: "0.3rem 0.85rem",
   borderRadius: "50rem",
@@ -127,4 +166,17 @@ export const deleteButton = style({
       color: "#ffffff",
     },
   },
+});
+
+export const actionButtons = style({
+  display: "flex",
+  gap: "0.4rem",
+  justifyContent: "center",
+});
+
+export const emptyMessage = style({
+  padding: "3rem",
+  textAlign: "center",
+  color: "#bbb",
+  fontSize: "0.95rem",
 });

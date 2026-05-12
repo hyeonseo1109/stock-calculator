@@ -20,6 +20,8 @@ interface StockFormProps {
   result: { profit: number; profitRate: number; totalAsset: number };
 }
 
+const ALL = "__ALL__";
+
 export const StockForm = ({
   selectedStock,
   setSelectedStock,
@@ -39,9 +41,15 @@ export const StockForm = ({
 }: StockFormProps) => {
   const { names, refetch } = useStockNames();
 
+  const dropdownOptions = [
+    { text: "전체보기" },
+    ...names.map((name) => ({ text: name })),
+  ];
+
+  const dropdownValue = selectedStock === "" ? "전체보기" : selectedStock;
+
   return (
     <div className={styles.formWrapper}>
-      {/* 종목 추가 input */}
       <div className={styles.section}>
         <label className={styles.label}>종목 추가</label>
         <input
@@ -52,23 +60,25 @@ export const StockForm = ({
         />
       </div>
 
-      {/* 드롭다운 */}
       <div className={styles.section}>
         <label className={styles.label}>종목 선택</label>
         <DropDown
-          placeholder="저장된 종목 선택"
-          value={stockName}
-          options={names.map((name) => ({ text: name }))}
+          placeholder="전체보기"
+          value={dropdownValue}
+          options={dropdownOptions}
           onSelect={(value) => {
-            setStockName(value);
-            setSelectedStock(value);
+            if (value === "전체보기") {
+              setSelectedStock("");
+            } else {
+              setStockName(value);
+              setSelectedStock(value);
+            }
           }}
         />
       </div>
 
       <div className={styles.divider} />
 
-      {/* 필수값 3개 */}
       <div className={styles.section}>
         <label className={styles.label}>매수가</label>
         <input
@@ -102,7 +112,6 @@ export const StockForm = ({
         />
       </div>
 
-      {/* 메모 */}
       <div className={styles.section}>
         <label className={styles.label}>메모</label>
         <input
@@ -113,7 +122,6 @@ export const StockForm = ({
         />
       </div>
 
-      {/* 저장 버튼 */}
       <button
         className={styles.saveButton}
         onClick={async () => {
@@ -128,7 +136,6 @@ export const StockForm = ({
 
       <div className={styles.divider} />
 
-      {/* 계산 결과 */}
       <div className={styles.section}>
         <p className={styles.resultLabel}>계산 결과</p>
         <div className={styles.resultBox}>
