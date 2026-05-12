@@ -8,7 +8,6 @@ export const pageWrapper = style({
   overflow: "hidden",
 });
 
-// 데스크탑
 export const inner = style({
   display: "flex",
   flexDirection: "column",
@@ -32,11 +31,11 @@ export const contentArea = style({
   alignItems: "flex-start",
 });
 
-// 모바일 슬라이더
 export const mobileSliderWrapper = style({
   display: "none",
   flexDirection: "column",
   flex: 1,
+  minHeight: 0,
   overflow: "hidden",
   position: "relative",
   userSelect: "none",
@@ -50,13 +49,14 @@ export const mobileSliderWrapper = style({
 export const mobileSlider = style({
   display: "flex",
   flex: 1,
+  minHeight: 0,
   transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
   willChange: "transform",
 });
 
 export const mobilePage = style({
   minWidth: "100%",
-  height: "100%",
+  minHeight: 0,
   overflowY: "auto",
   padding: "1.5rem 1rem",
   boxSizing: "border-box",

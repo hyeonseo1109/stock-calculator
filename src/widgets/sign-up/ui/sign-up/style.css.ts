@@ -25,6 +25,11 @@ export const signUpChatWrapper = style({
   width: "20rem",
   height: "auto",
   gap: "1rem",
+  "@media": {
+    "(max-width: 640px)": {
+      width: "100%",
+    },
+  },
 });
 
 // 로그인 버튼과 로그인 input 두 개를 감싸는 wrapper
@@ -35,6 +40,12 @@ export const signUpChatButtonWrapper = style({
   flexDirection: "column",
   gap: "3rem",
   height: "15rem",
+  "@media": {
+    "(max-width: 640px)": {
+      height: "auto",
+      width: "100%",
+    },
+  },
 });
 
 //전체 엔티티
@@ -48,22 +59,19 @@ export const allSignUp = style({
   gap: "3rem",
   boxShadow: "0 0.6rem 0.7rem #41bd6822",
   background: `
-    radial-gradient(
-      circle at top left,
-      rgba(247, 255, 87, 0.35),
-      transparent 10%
-    ),
-
-    radial-gradient(
-      circle at bottom right,
-      #78dc7873,
-      transparent 30%
-    ),
-
+    radial-gradient(circle at top left, rgba(247, 255, 87, 0.35), transparent 10%),
+    radial-gradient(circle at bottom right, #78dc7873, transparent 30%),
     white
   `,
   borderRadius: "1rem",
   padding: "10rem 0",
+  "@media": {
+    "(max-width: 640px)": {
+      width: "92%",
+      padding: "4rem 1.5rem",
+      height: "auto",
+    },
+  },
 });
 
 export const loginBox = style({
