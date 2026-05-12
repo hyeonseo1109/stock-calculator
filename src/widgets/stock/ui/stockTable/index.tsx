@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useStockList } from "@/features/stock/model/useStockList";
 import { StockItemProps } from "@/features/stock/model";
 import { deleteStock, toggleFavorite } from "@/features/stock/api";
+import { mmdd as formatdate } from "@/widgets/stock/util";
 import * as styles from "./style.css";
 
 interface StockTableProps {
@@ -16,13 +17,6 @@ interface StockTableProps {
   setQuantity: (quantity: number) => void;
   setMemo: (memo: string) => void;
 }
-
-const formatDate = (dateStr: string) => {
-  const date = new Date(dateStr);
-  const m = String(date.getMonth() + 1).padStart(2, "0");
-  const d = String(date.getDate()).padStart(2, "0");
-  return `${m}.${d}`;
-};
 
 const formatNumber = (n: number) => n.toLocaleString();
 
@@ -128,7 +122,7 @@ export const StockTable = ({
                       )}
 
                       <td className={styles.td}>
-                        {formatDate(item.created_date)}
+                        {formatdate(item.created_date)}
                       </td>
 
                       <td className={styles.td}>
