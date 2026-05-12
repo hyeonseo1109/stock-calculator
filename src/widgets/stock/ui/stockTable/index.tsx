@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { useStockList } from "@/features/stock/model/useStockList";
 import { StockItemProps } from "@/features/stock/model";
 import { deleteStock, toggleFavorite } from "@/features/stock/api";
-import likeIcon from "@/assets/like.png";
-import unlikeIcon from "@/assets/unlike.png";
 import * as styles from "./style.css";
 
 interface StockTableProps {
