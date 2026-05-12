@@ -2,8 +2,16 @@ import { useStockList } from "@/features/stock/model/useStockList";
 import * as styles from "./style.css";
 import { StockItemProps } from "@/features/stock/model";
 
-export const StockTable = () => {
-  const { list } = useStockList();
+interface StockTableProps {
+  selectedStock: string;
+}
+
+export const StockTable = ({ selectedStock }: StockTableProps) => {
+  const { list } = useStockList(selectedStock);
+
+  if (!selectedStock) {
+    return <div>종목을 선택해주세요.</div>;
+  }
 
   return (
     <div>

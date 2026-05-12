@@ -1,13 +1,17 @@
-// import * as styles from "./style.css";
-
 import { StockForm, StockTable } from "@/widgets/stock/ui";
+import { useState } from "react";
 
 export const CalculatePage = () => {
-  return (
-    <div>
-      <StockForm />
+  const [selectedStock, setSelectedStock] = useState("");
 
-      <StockTable />
-    </div>
+  return (
+    <>
+      <StockForm
+        selectedStock={selectedStock}
+        setSelectedStock={setSelectedStock}
+      />
+
+      <StockTable selectedStock={selectedStock} />
+    </>
   );
 };
