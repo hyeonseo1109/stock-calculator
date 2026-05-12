@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { supabase } from "@/shared/api";
-import { upsertStock } from "../api";
 
 export const useStockForm = () => {
   const [stockName, setStockName] = useState("");
@@ -12,21 +11,12 @@ export const useStockForm = () => {
 
   const calculate = () => {
     const totalBuy = buyPrice * quantity;
-
     const profit = (currentPrice - buyPrice) * quantity;
-
     const profitRate = totalBuy
       ? Number(((profit / totalBuy) * 100).toFixed(2))
       : 0;
-
     const totalAsset = totalBuy + profit;
-
-    return {
-      totalBuy,
-      profit,
-      profitRate,
-      totalAsset,
-    };
+    return { totalBuy, profit, profitRate, totalAsset };
   };
 
   const handleSave = async () => {
@@ -37,19 +27,34 @@ export const useStockForm = () => {
     if (!user) return;
 
     const { totalBuy, profit, profitRate, totalAsset } = calculate();
+    const today = new Date().toISOString().slice(0, 10);
+
+    // editId가 없을 때 → 오늘 날짜 + 같은 종목 행이 있는지 먼저 확인
+    let resolvedId = editId;
+
+    if (!resolvedId) {
+      const { data: existing } = await supabase
+        .from("stock")
+        .select("id")
+        .eq("user_id", user.id)
+        .eq("stock_name", stockName)
+        .eq("created_date", today)
+        .maybeSingle();
+
+      if (existing) {
+        resolvedId = existing.id;
+      }
+    }
 
     await supabase.from("stock").upsert({
-      id: editId ?? undefined, // 👈 있으면 수정, 없으면 생성
+      ...(resolvedId ? { id: resolvedId } : {}),
       user_id: user.id,
-
       stock_name: stockName,
-      created_date: new Date().toISOString().slice(0, 10),
-
+      created_date: today,
       buy_price: buyPrice,
       current_price: currentPrice,
       quantity,
       memo,
-
       total_buy: totalBuy,
       profit,
       profit_rate: profitRate,
@@ -64,21 +69,16 @@ export const useStockForm = () => {
   return {
     stockName,
     setStockName,
-
     buyPrice,
-    currentPrice,
-    quantity,
-    memo,
-
     setBuyPrice,
+    currentPrice,
     setCurrentPrice,
+    quantity,
     setQuantity,
+    memo,
     setMemo,
-
     handleSave,
-
     result,
-
     editId,
     setEditId,
   };
