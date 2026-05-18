@@ -18,7 +18,6 @@ export const CalculatePage = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const moveToFormPage = () => setPage(0);
-  const moveToListPage = () => setPage(1);
 
   const onDragStart = (e: React.MouseEvent | React.TouchEvent) => {
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
